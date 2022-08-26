@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 Route::auth();
 
 
-
 Route::get('/',[
 	'as'=>'trang-chu',
 	'uses'=>'PageController@getIndex'

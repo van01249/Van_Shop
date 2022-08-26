@@ -31,7 +31,8 @@ class PageController extends Controller
 {
 
 
-    public function getIndex(){
+    
+    public function getIndex(Request $request){
         $slide = Slide::all();
     	//return view('page.trangchu',['slide'=>$slide]);
         $new_product = Product::where('new',1)->paginate(4);

@@ -60,6 +60,7 @@
 							<li class="active"><h4><b><a href="#tab-comment">Đánh giá</a></b></h4></li>
 							<li class="active"><h4><b><a href="#tab-add-comment">Thêm đánh giá</a></b></h4></li>
 							<li><h4><b><a href="#tab-description">Mô tả</a></b></h4></li>
+							<li><h4><b><a href="#tab-binhluan">Bình luận</a></b></h4></li>
 						</ul>
 
 						<div class="panel active in" id="tab-comment">
@@ -104,12 +105,17 @@
 								</span>
 								 
 								<textarea name="comment" class="comment_content" placeholder="Nội dung bình luận" required></textarea>
-								<button type="button" class="btn btn-default pull-right send-comment">Thêm bình luận</button>
+								<button type="button" class="btn btn-default pull-right send-comment">Thêm đánh giá</button>
 								
 							</form>
 						</div>	
 						<div class="panel" id="tab-description">
 							<p>{!!$sanpham->description!!}</p>
+						</div>
+						<div class="panel" id="tab-binhluan">
+							<div id="fb-root"></div>
+							<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0" nonce="AQIciZxd"></script>
+							<div class="fb-comments" data-href="{{url()->current()}}" data-width="" data-numposts="10"></div>
 						</div>
 					</div>
 					<div class="space50">&nbsp;</div>
