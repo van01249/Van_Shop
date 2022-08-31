@@ -14,7 +14,16 @@ class Wards extends Model
     protected $primaryKey = 'xaid';
     protected $table = 'devvn_xaphuongthitran';
 
+    // public function phi(){
+    //     return $this->hasMany('App\PhiShip', 'maqh', 'maqh');
+    // }
     public function phi(){
         return $this->hasMany('App\PhiShip', 'xaid', 'xaid');
     }
+
+    // protected $table = "devvn_xaphuongthitran";
+
+    // public function bill(){
+    // 	return $this->hasMany('App\PhiShip','xaid','xaid');
+    // }
 }

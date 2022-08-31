@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class DeliveryController extends Controller
 {   
     public function danhsach(){
-        $data = PhiShip::all();
+        $data = PhiShip::with('city', 'province', 'wards')->get();
         return view('back-end.vanchuyen.danhsach', compact('data'));
     }
     public function index(){

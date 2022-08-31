@@ -109,7 +109,7 @@
                             <a href="admin/tintuc/danhsach">Danh sách tin tức</a>
                         </li>
                         <li>
-                            <a href="admin/tintuc/them">Thêm tintuc</a>
+                            <a href="admin/tintuc/them">Thêm tin tức</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

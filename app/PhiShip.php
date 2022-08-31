@@ -16,7 +16,7 @@ class PhiShip extends Model
         return $this->belongsTo('App\Province', 'maqh');
     }
 
-    public function ward(){
+    public function wards(){
         return $this->belongsTo('App\Wards', 'xaid');
     }
 }

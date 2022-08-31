@@ -48,7 +48,7 @@ Trang danh sách phí vận chuyển
                         <td>{{$fee->id}}</td>
                         <td>{{$fee->city->name}}</td>
                         <td>{{$fee->province->name}}</td>
-                        <td>{{$fee->ward->name}}</td>
+                        <td>{{$fee->wards->name}}</td>
                         <td>{{$fee->fee_ship}}</td>>
                         <td class="center">
                             {{-- <i class="fa fa-trash-o  fa-fw"></i><a href="admin/vanchuyen/xoa/{{$fee->id}}"> Xóa</a> --}}

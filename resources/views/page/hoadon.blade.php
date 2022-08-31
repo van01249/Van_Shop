@@ -80,7 +80,7 @@ Trang danh sách đơn hàng
                         <td>{{$dh->total + $dh->fee_ship}}</td>
                         <td class="center"><i class="fa fa-edit  fa-fw"></i><a href="history-detail/{{$dh->id_order}}"> Chi tiết</a></td>
                         <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Hủy đơn hàng</button>
+                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">Hủy đơn hàng</button>
 
                             <form action="{{route('updatestatus')}}" method="GET">
                                 {{-- @foreach($donhang as $dh) --}}

@@ -102,7 +102,7 @@ Trang quản trị
                 <div class="col-lg-3 btn btn-link">
                     <div class="card">
                         <div class="card-header">
-                            <h3><strong>Tổng quản trị viên</strong></h3>
+                            <h3><strong>Tổng người dùng</strong></h3>
                         </div>
                         <div class="card-body">
                             <p class="card-text">
