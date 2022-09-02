@@ -11,7 +11,7 @@
 					<ul class="top-details menu-beta l-inline">
 					@if(Auth::check())
 						<li><a href="{{route('history')}}">Lịch sử đơn hàng</a></li>
-						<li><a href="#">Chào bạn {{Auth::user()->full_name}}</a></li>
+						<li><a href="profile">Chào bạn {{Auth::user()->full_name}}</a></li>
 						<li><a href="{{route('logout')}}">Đăng xuất</a></li>
 					@else
 						<li><a href="{{route('signin')}}">Đăng kí</a></li>

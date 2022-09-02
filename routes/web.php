@@ -179,6 +179,27 @@ Route::post('dang-ki',[
 	'uses'=>'PageController@postSignin'
 ]);
 
+Route::get('show-profile/{id}',[
+	'as'=>'showprofile',
+	'uses'=>'PageController@getShowProfile'
+]);
+Route::get('show-pass',[
+	'as'=>'showpass',
+	'uses'=>'PageController@getShowPass'
+]);
+Route::get('profile',[
+	'as'=>'profile',
+	'uses'=>'PageController@getProfile'
+]);
+Route::post('update-profile/{id}',[
+	'as'=>'updateprofile',
+	'uses'=>'PageController@postUpdateProfile'
+]);
+Route::post('update-pass',[
+	'as'=>'updatepass',
+	'uses'=>'PageController@postUpdatePass'
+]);
+
 Route::get('dang-xuat',[
 	'as'=>'logout',
 	'uses'=>'PageController@postLogout'

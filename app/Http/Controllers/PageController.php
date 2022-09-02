@@ -30,6 +30,70 @@ use Illuminate\Support\Facades\Validator;
 class PageController extends Controller
 {
 
+    public function getShowProfile($id)
+    {
+        $user = User::find($id);
+        return view('page.update_profile',compact('user'));
+    }
+
+    public function getShowPass()
+    {
+        return view('page.update_pass');
+    }
+    
+    public function postUpdatePass(Request $request){
+        $this->validate($request,[
+            'newPassword' => 'required|min:6',
+            'rePassword' => 'required|same:newPassword',
+            'oldPassword' => 'required',
+        ],[
+            'newPassword.required' => 'Mật khẩu không được để trống',
+            'oldPassword.required' => 'Vui lòng nhập mật khẩu cũ',
+            'newPassword.min' => 'Mật khẩu ít nhất 6 kí tự',
+            'rePassword.required' => 'Nhập lại mật khẩu không được để trống',
+            'rePassword.same' => 'Nhập lại mật khẩu không đúng với mật khẩu'
+        ]);
+        $oldPassword = $request->oldPassword;
+        $newPassword = $request->newPassword;
+        if(!Hash::check($oldPassword, Auth::user()->password)){
+           return back()->with('msg' ,'Mật khẩu cũ không chính xác ');
+        }
+        else{
+            $request->user()->fill(['password' => Hash::make($newPassword)])->save();
+            return back()->with('thongbao' ,'Mật khẩu đã được thay đổi!');
+        }
+    }
+
+    public function getProfile(){
+        return view('page.profile');
+    }
+
+    public function postUpdateProfile(Request $request, $id)
+    {
+        $user = User::find($id);
+        $this->validate($request,[
+            'fullname' =>'required|min:3',
+            'email'=>'required|email',
+            'phone' =>'required',
+            'address' =>'required',
+        ],[
+            'fullname.required'=>'Nhập họ tên',
+            'fullname.min'=>'họ tên tối thiểu 3 kí tự',
+            'email.required'=>'Vui lòng nhập email',
+            'email.email'=>'Sai cú pháp email',
+            'email.unique'=>'Email đã tồn tại',
+            'phone.required'=>'Vui lòng nhập số điện thoại',
+            'address.required'=>'Vui lòng nhập địa chỉ',
+        ]);
+        $user->full_name = $request->fullname;
+        $user->email = $request->email;
+        // $user->password = bcrypt($request->password);
+        // $user->level = $request->level;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->save();
+        return redirect('show-profile/'.$id)->with('thongbao','Cập nhật thành công!');
+    }
 
     
     public function getIndex(Request $request){
