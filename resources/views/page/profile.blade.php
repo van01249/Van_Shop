@@ -41,7 +41,7 @@
         <div style="height:50px" class="container">
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
-                  <li><a href="{{url('updateprofile')}}">Quản lý tài khoản</a></li>
+                  <li><a href="show-profile/{{Auth::user()->id}}">Quản lý tài khoản</a></li>
                   <li class="active">@yield('tieude')</li>
                 </ol>
             </div><!--/breadcrums-->

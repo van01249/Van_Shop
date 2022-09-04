@@ -1,6 +1,6 @@
 @extends('back-end.master')
 @section('title')
-Trang sửa user
+Trang sửa người dùng
 @endsection
 @section('content')
 <!-- Page Content -->
@@ -8,7 +8,7 @@ Trang sửa user
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User
+                <h1 class="page-header">Người dùng
                     <small>Sửa {{$user->full_name}}</small>
                 </h1>
             </div>
@@ -34,20 +34,20 @@ Trang sửa user
                 <form action="admin/user/sua/{{$user->id}}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="form-group">
-                        <label>họ và tên</label>
+                        <label>Họ và tên</label>
                         <input class="form-control" value="{{$user->full_name}}" name="fullname" placeholder="Vui lòng nhập tên" />
                     </div>
                     <div class="form-group">
-                        <label>email</label>
+                        <label>Email</label>
                         <input class="form-control" readonly="" value="{{$user->email}}" name="email" placeholder="Vui lòng nhập email" />
                     </div>
                     <div class="form-group">
-                        <label><input type="checkbox" name="changePassword" id="changePassword"> Đổi password</label>
-                        <input class="form-control password" disabled="" type="password" name="password" placeholder="Vui lòng nhập password" />
+                        <label><input type="checkbox" name="changePassword" id="changePassword"> Đổi mật khẩu</label>
+                        <input class="form-control password" disabled="" type="password" name="password" placeholder="Vui lòng nhập mật khẩu mới" />
                     </div>
                     <div class="form-group">
-                        <label>password Again</label>
-                        <input class="form-control password" disabled="" type="password" name="passwordAgain" placeholder="Vui lòng nhập  lại password" />
+                        <label>Nhập lại</label>
+                        <input class="form-control password" disabled="" type="password" name="passwordAgain" placeholder="Vui lòng nhập lại mật khẩu mới" />
                     </div>
                     <div class="form-group">
                         <label>Quyền hạn</label>

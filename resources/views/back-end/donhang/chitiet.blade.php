@@ -81,7 +81,7 @@ Trang danh sách chi tiết đơn hàng
                                                 <option value="">---Chọn tình trạng đơn hàng---</option>
                                                 <option id="{{$or->id}}" value="0">Chưa xử lý - Chờ giao hàng</option>
                                                 <option id="{{$or->id}}" value="1">Đã xử lý - Đã giao hàng</option>
-                                                <option id="{{$or->id}}" selectedvalue="3">Đang xử lý - Đang giao hàng</option>
+                                                <option id="{{$or->id}}" selected value="3">Đang xử lý - Đang giao hàng</option>
                                                 <option id="{{$or->id}}" value="2">Hủy đơn hàng - Đã giao hàng</option>
                                             </select>
                                         </form>

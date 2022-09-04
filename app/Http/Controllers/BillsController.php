@@ -34,7 +34,42 @@ class BillsController extends Controller
         $bill->status = 2;
         $bill->note = $request->lydo;
         $bill->save();
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
+            $title_mail = "Thông báo tình trạng đơn hàng xác nhận ngày".' '.$now;
+            $customer_mail = Customer::find($bill->id_customer);
+            $data['email'][] = $customer_mail->email;
+            $bill_detail = BillDetail::where('id_bill', $bill->id)->get();
 
+            foreach($bill_detail as $key){
+                $product_cart = Product::where('id', $key->id_product)->first();
+                $cart_arr[] = array(
+                    'product_name' => $product_cart->name,
+                    'product_unit_price'=> $key->unit_price,
+                    'product_qty' => $key->quantity,
+                    'product_price' => ($key->unit_price * $key->quantity)
+                        
+                );
+            }
+
+
+            $shipping = array(
+                'cus_name' => $customer_mail->name,
+                'ship_name' => $customer_mail->name,
+                'email' => $customer_mail->email,
+                'address' => $customer_mail->address,
+                'phone_number' => $customer_mail->phone_number,
+                'note' => $customer_mail->note
+            );
+
+            $total = $bill->total;
+
+            $phi_van_chuyen = $bill->fee_ship;
+
+            Mail::send('page.mail.mail_status(2)', ['cart_arr'=>$cart_arr, 'shipping'=>$shipping, 'total'=>$total, 'phi_van_chuyen'=>$phi_van_chuyen], 
+            function($message) use ($title_mail, $data){
+                $message->to($data['email'])->subject($title_mail);
+                $message->from($data['email'], $title_mail);
+            });
         return redirect()->back()->with('message','Hủy đơn hàng thành công');
         // return view('page.hoadon', compact('donhang'))->with('thongbao', 'Hủy đơn hàng thành công!') ;
     }
@@ -173,6 +208,8 @@ class BillsController extends Controller
             
         }elseif($bill->status == 3){
             $now = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y H:i:s');
+            $to_date = Carbon::now('Asia/Ho_Chi_Minh')->addDays(4)->format('d-m-Y');
+            $from_date = Carbon::now('Asia/Ho_Chi_Minh')->addDays(10)->format('d-m-Y');
             $title_mail = "Thông báo tình trạng đơn hàng xác nhận ngày".' '.$now;
             $customer_mail = Customer::find($bill->id_customer);
             $data['email'][] = $customer_mail->email;
@@ -203,7 +240,7 @@ class BillsController extends Controller
 
             $phi_van_chuyen = $bill->fee_ship;
 
-            Mail::send('page.mail.mail_status', ['cart_arr'=>$cart_arr, 'shipping'=>$shipping, 'total'=>$total, 'phi_van_chuyen'=>$phi_van_chuyen], 
+            Mail::send('page.mail.mail_status', ['cart_arr'=>$cart_arr, 'shipping'=>$shipping, 'total'=>$total, 'phi_van_chuyen'=>$phi_van_chuyen, 'to_date'=>$to_date, 'from_date'=>$from_date], 
             function($message) use ($title_mail, $data){
                 $message->to($data['email'])->subject($title_mail);
                 $message->from($data['email'], $title_mail);

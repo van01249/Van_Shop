@@ -57,10 +57,10 @@
 					<div class="space40">&nbsp;</div>
 					<div class="woocommerce-tabs">
 						<ul class="tabs">
-							<li class="active"><h4><b><a href="#tab-comment">Đánh giá</a></b></h4></li>
-							<li class="active"><h4><b><a href="#tab-add-comment">Thêm đánh giá</a></b></h4></li>
-							<li><h4><b><a href="#tab-description">Mô tả</a></b></h4></li>
-							<li><h4><b><a href="#tab-binhluan">Bình luận</a></b></h4></li>
+							<li class="active"><h5><b><a href="#tab-comment">Đánh giá</a></b></h5></li>
+							<li class="active"><h5><b><a href="#tab-add-comment">Thêm đánh giá</a></b></h5></li>
+							<li><h5><b><a href="#tab-description">Mô tả</a></b></h5></li>
+							<li><h5><b><a href="#tab-binhluan">Bình luận</a></b></h5></li>
 						</ul>
 
 						<div class="panel active in" id="tab-comment">
@@ -114,8 +114,15 @@
 						</div>
 						<div class="panel" id="tab-binhluan">
 							<div id="fb-root"></div>
+							<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6"></script>
+
+							<!-- Your embedded comments code -->
+							<div class="fb-comment-embed"
+							data-href="https://www.facebook.com/zuck/posts/10102735452532991?comment_id=1070233703036185"
+							data-width="500"></div>
+							{{-- <div id="fb-root"></div>
 							<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0" nonce="AQIciZxd"></script>
-							<div class="fb-comments" data-href="{{url()->current()}}" data-width="" data-numposts="10"></div>
+							<div class="fb-comments" data-href="{{url()->current()}}" data-width="" data-numposts="10"></div> --}}
 						</div>
 					</div>
 					<div class="space50">&nbsp;</div>

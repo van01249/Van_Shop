@@ -1,6 +1,6 @@
 @extends('back-end.master')
 @section('title')
-Trang Thêm user
+Trang thêm người dùng
 @endsection
 @section('content')
 <!-- Page Content -->
@@ -8,7 +8,7 @@ Trang Thêm user
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User
+                <h1 class="page-header">Người dùng
                     <small>Thêm</small>
                 </h1>
             </div>
@@ -34,19 +34,19 @@ Trang Thêm user
                 <form action="admin/user/them" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="form-group">
-                        <label>họ và tên</label>
+                        <label>Họ và tên</label>
                         <input class="form-control" name="fullname" placeholder="Vui lòng nhập tên" />
                     </div>
                     <div class="form-group">
-                        <label>email</label>
+                        <label>Email</label>
                         <input class="form-control" name="email" placeholder="Vui lòng nhập email" />
                     </div>
                     <div class="form-group">
-                        <label>password</label>
+                        <label>Mật khẩu</label>
                         <input class="form-control password" type="password" name="password" placeholder="Vui lòng nhập password" />
                     </div>
                     <div class="form-group">
-                        <label>password Again</label>
+                        <label>Nhập lại</label>
                         <input class="form-control password" type="password" name="passwordAgain" placeholder="Vui lòng nhập  lại password" />
                     </div>
                     <div class="form-group">

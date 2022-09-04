@@ -26,6 +26,7 @@
                 <h4>Thông tin đơn hàng</h4>
                 <p>Dịch vụ: <strong>Đặt hàng trực tuyến</strong></p>
                 <p>Tình trạng giao hàng: <strong>Đang giao hàng</strong></p>
+                <p>Thời gian giao hàng: <strong>Từ ngày {{$to_date}} đến ngày {{$from_date}}</strong></p>
 
                 <h4>Thông tin người nhận</h4>
                 <p>Tên người nhận: <strong>{{$shipping['ship_name']}}</strong></p>
