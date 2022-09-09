@@ -255,7 +255,7 @@ Route::get('admin/logout',[
 			Route::get('sua/{id}','ProductsController@show');
 			Route::post('sua/{id}','ProductsController@update');
 
-			
+			Route::get('capnhat/{id}', 'ProductsController@update_display');
 		  });
 
 		  Route::group(['prefix' => 'danhgia'], function() {

@@ -89,6 +89,11 @@ class BillsController extends Controller
         $bill = Bill::find($data['order_id']);
         
         $bill->status = $data['order_status'];
+        if($data['order_status'] == 1){
+            $bill->status_payment = 1;
+        }else{
+            $bill->status_payment = 0;
+        }
         $bill->save();
 
         $date_order = $bill->date_order;

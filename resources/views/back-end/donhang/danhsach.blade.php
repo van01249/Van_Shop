@@ -38,8 +38,10 @@ Trang danh sách đơn hàng
                         <th>Tên khách hàng</th>
                         <th>Ngày đặt</th>
                         <th>Tình trạng đơn hàng</th>
-                        <th>Ghi chú</th>
-                        <th>Tổng tiền</th>
+                        <th>Hình thức thanh toán</th>
+                        <th>Trạng thái giao hàng</th>
+                        {{-- <th>Ghi chú</th> --}}
+                        {{-- <th>Tổng tiền</th> --}}
                         <th></th>
                         <th></th>
                     </tr>
@@ -57,9 +59,21 @@ Trang danh sách đơn hàng
                                 Đã thanh toán
                             @endif
                         </td>
-                        <td>{{$dh->note}}</td>
-                        <td>{{$dh->total + $dh->fee_ship}} </td>
+                        <td>{{$dh->payment}}</td>
+                        <td>@if ($dh->status==0)
+                            Chưa giao hàng
+                        @elseif ($dh->status==1)
+                            Đã giao hàng
+                        @elseif ($dh->status==3)
+                            Đang giao hàng
+                        @else
+                            Hủy đơn hàng
+                        @endif  </td>
+                        {{-- <td>{{$dh->note}}</td> --}}
+                        {{-- <td>{{$dh->total + $dh->fee_ship}} </td> --}}
+                        <td class="center"><i class="fa fa-edit  fa-fw"></i><a href="admin/donhang/chitiet/{{$dh->id}}"> Chi tiết</a></td>
                         <td class="center">
+                            @if($dh->status == 0 )
                             <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">Xóa</button>
 
                             <form action="admin/donhang/xoa/{{$dh->id}}" method="GET">
@@ -82,8 +96,9 @@ Trang danh sách đơn hàng
                                     </div>
                                 </div>
                             </form>
+                            @endif
                         </td>
-                        <td class="center"><i class="fa fa-edit  fa-fw"></i><a href="admin/donhang/chitiet/{{$dh->id}}"> Chi tiết</a></td>
+                        
                     </tr>
                     @endforeach
                 </tbody>

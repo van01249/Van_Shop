@@ -30,7 +30,12 @@ class ProductsController extends Controller
         return view('back-end.sanpham.them',compact('theloai'));
     }
 
-    
+    public function update_display(Request $request, $id){
+        $sanpham = Product::find($id);
+        $sanpham->display = $request->display;
+        $sanpham->save();
+        return redirect()->back()->with('thongbao', 'Cập nhật thành công!');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -73,7 +78,8 @@ class ProductsController extends Controller
         $sanpham->unit_price = $request->unitprice;
         $sanpham->promotion_price = $request->promotionprice;
         $sanpham->unit = $request->unit;
-        $sanpham->new = $request->new;
+        $sanpham->new = $request->new; 
+        $sanpham->display = 1;
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $duoi = $file->getClientOriginalExtension();

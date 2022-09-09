@@ -37,12 +37,16 @@ Trang danh sách chi tiết đơn hàng
                         <th>Mã</th>
                         <th>Tên khách hàng</th>
                         <th>Ngày đặt</th>
-                        <th>Thành tiền</th>
-                        <th>Hình thức thanh toán</th>
+                        
+                        {{-- <th>Hình thức thanh toán</th> --}}
                         <th>Trạng thái đơn hàng</th>
+                        <th>Thành tiền</th>
                         <th>Phí vận chuyển</th>
                         <th>Tổng tiền</th>
+                        <th>Ghi chú</th>
+                       
                         <th></th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -51,8 +55,8 @@ Trang danh sách chi tiết đơn hàng
                         <td>{{$dh->id}}</td>
                         <td>{{$dh->customer->name}}</td>
                         <td>{{$dh->date_order}}</td>
-                        <td>{{$dh->total}}</td>
-                        <td>{{$dh->payment}}</td>
+                        
+                        {{-- <td>{{$dh->payment}}</td> --}}
                         <td>
                             @foreach ($bill as $item => $or)
                                     @if ($or->status==0)
@@ -98,11 +102,14 @@ Trang danh sách chi tiết đơn hàng
                                     @endif
                                 @endforeach
                         </td>
+                        <td>{{$dh->total}}</td>
                         <td>{{$dh->fee_ship}}</td>
                         
                         <td>{{$dh->total + $dh->fee_ship}}</td>
-                        <td class="center">
-                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">Xóa</button>
+                        <td>{{$dh->note}}</td>
+                            @if ($dh->status == 0)
+                                <td class="center">
+                                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">Xóa</button>
 
                             <form action="admin/donhang/xoa/{{$dh->id}}" method="GET">
             
@@ -124,7 +131,9 @@ Trang danh sách chi tiết đơn hàng
                                     </div>
                                 </div>
                             </form>
-                        </td>
+                                </td>
+                            @endif
+
                     </tr>
                     @endforeach
                 </tbody>
@@ -144,7 +153,9 @@ Trang danh sách chi tiết đơn hàng
                         <th>Tồn kho</th>
                         <th>Số lượng</th>
                         <th>Đơn giá</th>
-                        <th></th>
+    
+                        {{-- <th></th> --}}
+
                     </tr>
                 </thead>
                 <tbody>
@@ -162,6 +173,7 @@ Trang danh sách chi tiết đơn hàng
                                     
                                 </td>
                         <td>{{$ctdh->unit_price}}</td>
+                        @if ($ctdh->bill->status==0)
                         <td class="center">
                             {{-- <i class="fa fa-trash-o  fa-fw"></i> --}}
                             <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal1">Xóa</button>
@@ -188,6 +200,7 @@ Trang danh sách chi tiết đơn hàng
                                 </div>
                             {{-- </form> --}}
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

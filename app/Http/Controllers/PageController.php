@@ -99,24 +99,24 @@ class PageController extends Controller
     public function getIndex(Request $request){
         $slide = Slide::all();
     	//return view('page.trangchu',['slide'=>$slide]);
-        $new_product = Product::where('new',1)->paginate(4);
-        $sanpham_khuyenmai = Product::where('promotion_price','<>',0)->paginate(8);
+        $new_product = Product::where('new',1)->where('display', 1)->orderBy('id', 'desc')->paginate(4);
+        $sanpham_khuyenmai = Product::where('promotion_price','<>',0)->where('display', 1)->paginate(8);
         return view('page.trangchu',compact('slide','new_product','sanpham_khuyenmai'));
     }
 
     public function getLoaiSp($type){
-        $sp_theoloai = Product::where('id_type',$type)->get();
-        $sp_khac = Product::where('id_type','<>',$type)->paginate(3);
+        $sp_theoloai = Product::where('id_type',$type)->where('display', 1)->get();
+        $sp_khac = Product::where('id_type','<>',$type)->where('display', 1)->paginate(3);
         $loai = ProductType::all();
         $loap_sp = ProductType::where('id',$type)->first();
     	return view('page.loai_sanpham',compact('sp_theoloai','sp_khac','loai','loap_sp'));
     }
 
     public function getChitiet(Request $req){
-        $sanpham = Product::where('id',$req->id)->first();
-        $sp_tuongtu = Product::where('id_type',$sanpham->id_type)->paginate(6);
-        $sp_sale = Product::where('promotion_price','>',0)->inRandomOrder()->limit(4)->get();
-        $sp_moi= Product::orderBy('created_at', 'desc')->inRandomOrder()->limit(4)->get();
+        $sanpham = Product::where('id',$req->id)->where('display', 1)->first();
+        $sp_tuongtu = Product::where('id_type',$sanpham->id_type)->where('display', 1)->paginate(6);
+        $sp_sale = Product::where('promotion_price','>',0)->where('display', 1)->inRandomOrder()->limit(4)->get();
+        $sp_moi= Product::orderBy('created_at', 'desc')->where('display', 1)->inRandomOrder()->limit(4)->get();
 
     	return view('page.chitiet_sanpham',compact('sanpham','sp_tuongtu','sp_sale','sp_moi'));
     }
@@ -187,7 +187,7 @@ class PageController extends Controller
 
     public function getTimkiem(Request $request)
     {
-        $sanpham = Product::where('name', 'like', '%' . $request->s . '%')->get();
+        $sanpham = Product::where('name', 'like', '%' . $request->s . '%')->where('display', 1)->get();
         $search = $request->s;
         
         return view('page.timkiem',compact('sanpham','search'));
